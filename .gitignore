@@ -1,0 +1,7 @@
+node_modules/
+client/dist/
+client/node_modules/
+server/portal.db
+uploads/*
+!uploads/.gitkeep
+.env
