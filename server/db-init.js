@@ -125,6 +125,7 @@ function initDB(db) {
     db.prepare('INSERT INTO clients (id, name, slug, product_lines, modules) VALUES (?, ?, ?, ?, ?)').run('1994', '1994', '1994', '["digital"]', '["projects","assets"]');
     db.prepare('INSERT INTO clients (id, name, slug, product_lines, modules) VALUES (?, ?, ?, ?, ?)').run('enterkine', 'Enterkine House', 'enterkine', '["digital"]', '["projects","assets","content-review"]');
     db.prepare('INSERT INTO clients (id, name, slug, product_lines, modules) VALUES (?, ?, ?, ?, ?)').run('kyle-rise', 'Kyle Rise Car Park', 'kyle-rise', '["digital"]', '["parking","screens","analytics"]');
+    db.prepare('INSERT INTO clients (id, name, slug, product_lines, modules) VALUES (?, ?, ?, ?, ?)').run('lc-events', 'Local Connect Events', 'lc-events', '["events"]', '["radio","cru","ops-log","helpdesk"]');
 
     // Demo project for 1994
     const projId = uuid();

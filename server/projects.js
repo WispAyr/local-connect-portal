@@ -50,7 +50,7 @@ router.put('/:id', authenticate, (req, res) => {
 
   const { title, description, brief, status, priority, category, due_date, budget, assigned_to } = req.body;
   const oldStatus = project.status;
-  req.db.prepare('UPDATE projects SET title=?, description=?, brief=?, status=?, priority=?, category=?, due_date=?, budget=?, assigned_to=?, updated_at=datetime("now") WHERE id=?').run(
+  req.db.prepare("UPDATE projects SET title=?, description=?, brief=?, status=?, priority=?, category=?, due_date=?, budget=?, assigned_to=?, updated_at=datetime('now') WHERE id=?").run(
     title ?? project.title, description ?? project.description, brief ?? project.brief,
     status ?? project.status, priority ?? project.priority, category ?? project.category,
     due_date ?? project.due_date, budget ?? project.budget, assigned_to ?? project.assigned_to, req.params.id

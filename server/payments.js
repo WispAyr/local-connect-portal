@@ -71,7 +71,7 @@ router.post('/invoices/:id/payment-link', authenticate, requireRole('admin', 'st
 
 // Mark as paid (admin manual or webhook)
 router.post('/invoices/:id/mark-paid', authenticate, requireRole('admin'), (req, res) => {
-  req.db.prepare('UPDATE invoices SET status = ?, paid_at = datetime("now") WHERE id = ?').run('paid', req.params.id);
+  req.db.prepare("UPDATE invoices SET status = ?, paid_at = datetime('now') WHERE id = ?").run('paid', req.params.id);
   // Unlock assets
   const invoice = req.db.prepare('SELECT * FROM invoices WHERE id = ?').get(req.params.id);
   if (invoice?.project_id) {
@@ -91,7 +91,7 @@ router.post('/webhook', (req, res) => {
     if (event.type === 'checkout.session.completed') {
       const invoiceId = event.data?.object?.metadata?.invoice_id;
       if (invoiceId) {
-        req.db.prepare('UPDATE invoices SET status = ?, paid_at = datetime("now"), stripe_payment_intent = ? WHERE id = ?').run('paid', event.data.object.payment_intent, invoiceId);
+        req.db.prepare("UPDATE invoices SET status = ?, paid_at = datetime('now'), stripe_payment_intent = ? WHERE id = ?").run('paid', event.data.object.payment_intent, invoiceId);
         const invoice = req.db.prepare('SELECT * FROM invoices WHERE id = ?').get(invoiceId);
         if (invoice?.project_id) {
           req.db.prepare('UPDATE assets SET requires_payment = 0 WHERE project_id = ? AND requires_payment = 1').run(invoice.project_id);

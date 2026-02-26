@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
-import { LayoutDashboard, FolderKanban, Image, Receipt, Settings, Users, LogOut, Menu, X, Car, Monitor } from 'lucide-react';
+import { LayoutDashboard, FolderKanban, Image, Receipt, Settings, Users, LogOut, Menu, X, Car, Monitor, Radio, Truck, ScrollText, Megaphone, HelpCircle } from 'lucide-react';
 import { useState } from 'react';
 
 const navItems = [
@@ -15,9 +15,14 @@ const adminItems = [
   { to: '/admin/clients', icon: Users, label: 'Clients' },
 ];
 
-const moduleNavMap: Record<string, { to: string; icon: any; label: string }> = {
-  parking: { to: '/parking', icon: Car, label: 'Parking' },
-  screens: { to: '/screens', icon: Monitor, label: 'Screens' },
+const moduleNavMap: Record<string, { to: string; icon: any; label: string; productLine?: string }> = {
+  parking: { to: '/parking', icon: Car, label: 'Parking', productLine: 'digital' },
+  screens: { to: '/screens', icon: Monitor, label: 'Screens', productLine: 'digital' },
+  radio: { to: '/radio', icon: Radio, label: 'Radio Manager', productLine: 'events' },
+  cru: { to: '/cru', icon: Truck, label: 'CRU Fleet', productLine: 'events' },
+  'ops-log': { to: '/ops-log', icon: ScrollText, label: 'Ops Log', productLine: 'shared' },
+  campaigns: { to: '/campaigns', icon: Megaphone, label: 'Campaigns', productLine: 'digital' },
+  helpdesk: { to: '/helpdesk', icon: HelpCircle, label: 'Helpdesk', productLine: 'shared' },
 };
 
 export default function Shell() {

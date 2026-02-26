@@ -31,7 +31,7 @@ router.post('/login', (req, res) => {
   if (!user || !bcrypt.compareSync(password, user.password_hash)) {
     return res.status(401).json({ error: 'Invalid credentials' });
   }
-  req.db.prepare('UPDATE users SET last_login = datetime("now") WHERE id = ?').run(user.id);
+  req.db.prepare("UPDATE users SET last_login = datetime('now') WHERE id = ?").run(user.id);
   const token = jwt.sign({ id: user.id, email: user.email, name: user.name, role: user.role, client_id: user.client_id }, JWT_SECRET, { expiresIn: JWT_EXPIRY });
   const client = user.client_id ? req.db.prepare('SELECT * FROM clients WHERE id = ?').get(user.client_id) : null;
   res.json({ token, user: { id: user.id, email: user.email, name: user.name, role: user.role, client_id: user.client_id, avatar_url: user.avatar_url }, client });

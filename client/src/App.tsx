@@ -13,6 +13,17 @@ import ParkingDashboard from './modules/parking/ParkingDashboard';
 import ParkingSite from './modules/parking/ParkingSite';
 import WhitelistManager from './modules/parking/WhitelistManager';
 import ScreensDashboard from './modules/screens/ScreensDashboard';
+import RadioDashboard from './modules/radio/RadioDashboard';
+import RadioInventory from './modules/radio/RadioInventory';
+import RadioEvent from './modules/radio/RadioEvent';
+import CRUDashboard from './modules/cru/CRUDashboard';
+import VehicleDetail from './modules/cru/VehicleDetail';
+import OpsLogTimeline from './modules/ops-log/OpsLogTimeline';
+import CampaignsDashboard from './modules/campaigns/CampaignsDashboard';
+import CampaignDetail from './modules/campaigns/CampaignDetail';
+import HelpdeskDashboard from './modules/helpdesk/HelpdeskDashboard';
+import TicketDetail from './modules/helpdesk/TicketDetail';
+import KnowledgeBase from './modules/helpdesk/KnowledgeBase';
 
 export default function App() {
   return (
@@ -31,6 +42,17 @@ export default function App() {
         <Route path="parking/whitelists" element={<WhitelistManager />} />
         <Route path="parking/whitelists/:id" element={<WhitelistManager />} />
         <Route path="screens" element={<ScreensDashboard />} />
+        <Route path="radio" element={<RadioDashboard />} />
+        <Route path="radio/inventory" element={<RadioInventory />} />
+        <Route path="radio/events/:id" element={<RadioEvent />} />
+        <Route path="cru" element={<CRUDashboard />} />
+        <Route path="cru/vehicles/:id" element={<VehicleDetail />} />
+        <Route path="ops-log" element={<OpsLogTimeline />} />
+        <Route path="campaigns" element={<CampaignsDashboard />} />
+        <Route path="campaigns/:id" element={<CampaignDetail />} />
+        <Route path="helpdesk" element={<HelpdeskDashboard />} />
+        <Route path="helpdesk/tickets/:id" element={<TicketDetail />} />
+        <Route path="helpdesk/kb" element={<KnowledgeBase />} />
       </Route>
     </Routes>
   );
