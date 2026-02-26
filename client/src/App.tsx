@@ -9,6 +9,10 @@ import Assets from './pages/Assets';
 import Invoices from './pages/Invoices';
 import Settings from './pages/Settings';
 import AdminClients from './pages/AdminClients';
+import ParkingDashboard from './modules/parking/ParkingDashboard';
+import ParkingSite from './modules/parking/ParkingSite';
+import WhitelistManager from './modules/parking/WhitelistManager';
+import ScreensDashboard from './modules/screens/ScreensDashboard';
 
 export default function App() {
   return (
@@ -22,6 +26,11 @@ export default function App() {
         <Route path="invoices" element={<Invoices />} />
         <Route path="settings" element={<Settings />} />
         <Route path="admin/clients" element={<ProtectedRoute roles={['admin', 'staff']}><AdminClients /></ProtectedRoute>} />
+        <Route path="parking" element={<ParkingDashboard />} />
+        <Route path="parking/sites/:id" element={<ParkingSite />} />
+        <Route path="parking/whitelists" element={<WhitelistManager />} />
+        <Route path="parking/whitelists/:id" element={<WhitelistManager />} />
+        <Route path="screens" element={<ScreensDashboard />} />
       </Route>
     </Routes>
   );

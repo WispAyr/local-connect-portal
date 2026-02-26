@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../auth/AuthContext';
 import { api } from '../api/client';
-import { FolderKanban, Image, Receipt, Monitor, ArrowRight } from 'lucide-react';
+import { FolderKanban, Image, Receipt, Monitor, ArrowRight, Car } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const moduleIcons: Record<string, any> = {
@@ -47,19 +47,32 @@ export default function Dashboard() {
         ))}
       </div>
 
-      {/* Products / External Links */}
-      {modules.includes('screens') && (
+      {/* Module Cards */}
+      {(modules.includes('parking') || modules.includes('screens')) && (
         <div className="mb-8">
-          <h2 className="text-sm font-medium text-gray-400 mb-3 uppercase tracking-wider">Products</h2>
-          <a href="https://screens.local-connect.uk" target="_blank" rel="noreferrer"
-            className="inline-flex items-center gap-3 bg-surface-2 border border-gray-800/50 rounded-xl p-5 hover:border-gray-700/50 transition-colors">
-            <Monitor size={24} className="text-cyan-400" />
-            <div>
-              <div className="font-medium">Digital Screens</div>
-              <div className="text-sm text-gray-500">Manage your screen content</div>
-            </div>
-            <ArrowRight size={16} className="text-gray-600 ml-4" />
-          </a>
+          <h2 className="text-sm font-medium text-gray-400 mb-3 uppercase tracking-wider">Modules</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {modules.includes('parking') && (
+              <Link to="/parking" className="flex items-center gap-3 bg-surface-2 border border-gray-800/50 rounded-xl p-5 hover:border-gray-700/50 transition-colors">
+                <Car size={24} className="text-blue-400" />
+                <div>
+                  <div className="font-medium">Car Park Management</div>
+                  <div className="text-sm text-gray-500">Sites, whitelists, activity</div>
+                </div>
+                <ArrowRight size={16} className="text-gray-600 ml-auto" />
+              </Link>
+            )}
+            {modules.includes('screens') && (
+              <Link to="/screens" className="flex items-center gap-3 bg-surface-2 border border-gray-800/50 rounded-xl p-5 hover:border-gray-700/50 transition-colors">
+                <Monitor size={24} className="text-cyan-400" />
+                <div>
+                  <div className="font-medium">Digital Screens</div>
+                  <div className="text-sm text-gray-500">Manage your screen content</div>
+                </div>
+                <ArrowRight size={16} className="text-gray-600 ml-auto" />
+              </Link>
+            )}
+          </div>
         </div>
       )}
 

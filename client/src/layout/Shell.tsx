@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
-import { LayoutDashboard, FolderKanban, Image, Receipt, Settings, Users, LogOut, Menu, X } from 'lucide-react';
+import { LayoutDashboard, FolderKanban, Image, Receipt, Settings, Users, LogOut, Menu, X, Car, Monitor } from 'lucide-react';
 import { useState } from 'react';
 
 const navItems = [
@@ -15,11 +15,18 @@ const adminItems = [
   { to: '/admin/clients', icon: Users, label: 'Clients' },
 ];
 
+const moduleNavMap: Record<string, { to: string; icon: any; label: string }> = {
+  parking: { to: '/parking', icon: Car, label: 'Parking' },
+  screens: { to: '/screens', icon: Monitor, label: 'Screens' },
+};
+
 export default function Shell() {
-  const { user, logout } = useAuth();
+  const { user, client, logout } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
   const isAdmin = user?.role === 'admin' || user?.role === 'staff';
-  const items = isAdmin ? [...navItems, ...adminItems] : navItems;
+  const clientModules: string[] = client ? JSON.parse(client.modules || '[]') : [];
+  const moduleItems = clientModules.map(m => moduleNavMap[m]).filter(Boolean);
+  const items = [...navItems, ...moduleItems, ...(isAdmin ? adminItems : [])];
 
   return (
     <div className="min-h-screen bg-[#07080a] flex">
